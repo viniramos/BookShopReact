@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FaUser, FaLock } from "react-icons/fa";
 
 export function Login() {
-  const [username, setUsername] = useState("");
+  const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
@@ -27,7 +27,7 @@ export function Login() {
               type="email"
               placeholder="E-mail"
               required
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => setUser(e.target.value)}
             />
             <FaUser className={styles.icon} />
           </div>

@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: url("https://hips.hearstapps.com/hmg-prod/images/library-admont-abbey-austria-royalty-free-image-1717518413.jpg?crop=0.668xw:1.00xh;0.184xw,0&resize=1120:*");
+    background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
     background-size: cover;
     background-position: center;
 }
@@ -58,7 +58,7 @@
 }
 
 .inputfield input::placeholder{
-    color: black;
+    color: rgba(0,0,0,0.5);
 }
 
 .inputfield .icon{
