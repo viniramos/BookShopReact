@@ -15,7 +15,7 @@ export function Login() {
   };
 
   const navigate = useNavigate();
-  const handleNavigation = () => navigate("/cadastro");
+  const handleNavigationCadastro = () => navigate("/cadastro");
 
   return (
     <>
@@ -52,7 +52,7 @@ export function Login() {
           <div className={styles.btncadastro}>
             <p>
               Não tem uma conta?
-              <button onClick={handleNavigation}>Registrar</button>
+              <button onClick={handleNavigationCadastro}>Registrar</button>
             </p>
           </div>
         </form>
