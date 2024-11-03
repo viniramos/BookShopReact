@@ -18,9 +18,6 @@ const members = [
     name: 'Rafael Januzzi Marques Correa',
     description: 'Estudante Serratec 2024-2',
     image: 'https://i.imgur.com/LaIyRyq.jpeg',
-    github: 'https://github.com/joaosilva',
-    linkedin: 'https://www.linkedin.com/in/joaosilva',
-    email: 'mailto:joao.silva@example.com'
   },
   {
     name: 'Samuel',
