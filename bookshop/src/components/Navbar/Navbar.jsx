@@ -4,6 +4,7 @@ import { GiSpellBook } from "react-icons/gi";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { MdOutlineLogin } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
+import { FiMenu } from "react-icons/fi";
 
 export function Navbar() {
   return (
