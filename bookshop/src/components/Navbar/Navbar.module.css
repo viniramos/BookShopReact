@@ -1,0 +1,39 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    min-height: 75%;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    background-color: #222;
+    padding: 2rem;
+    position: sticky;
+    font-size: 1.25rem;
+}
+
+.list {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.item {
+    margin-right: 1rem;
+}
+
+.title a,
+.item a {
+    color: white;
+    text-decoration: none;
+}
+
+.title a:hover, 
+.item a:hover{
+    color: cornflowerblue;
+}
