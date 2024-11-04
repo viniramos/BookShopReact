@@ -5,14 +5,14 @@ import styles from "./Sobre.module.css";
 
 const members = [
   {
-    name: 'Caio',
-    description: '',
+    name: 'Caio Pacheco',
+    description: 'Estudante Serratec 2024-2',
     image: ''
   },
   {
-    name: 'Rafael',
-    description: 'coloca sua descrição',
-    image: ''
+    name: 'Rafael Guberman',
+    description: 'Estudante Serratec 2024-2',
+    image: 'https://media.licdn.com/dms/image/v2/D4D03AQGZo4qHQ_dI0A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1730163656721?e=1736380800&v=beta&t=YbZnFfrTwCb67A8dN0t9APVX6pvNhEvWi-wtJYZoBBg'
   },
   {
     name: 'Rafael Januzzi Marques Correa',
@@ -21,8 +21,8 @@ const members = [
   },
   {
     name: 'Samuel',
-    description: 'coloca sua descrição',
-    image: '/path/to/vinicius.jpg'
+    description: 'Estudante Serratec 2024-2',
+    image: 'https://avatars.githubusercontent.com/u/177686897?v=4'
   },
   {
     name: 'Vitor',
@@ -30,9 +30,9 @@ const members = [
     image: ''
   },
   {
-    name: 'Vinicius',
-    description: 'coloca sua descrição',
-    image: ''
+    name: 'Vinicius Ramos Pimenta',
+    description: 'Estudante Serratec 2024-2',
+    image: 'https://avatars.githubusercontent.com/u/177691252?v=4'
   }
 ];
 

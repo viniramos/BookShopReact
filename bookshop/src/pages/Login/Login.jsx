@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { FaUser, FaLock } from "react-icons/fa";
 import CustomAlertError from "../../components/CustomAlert/CustomAlertError";
 import CustomAlertSuccess from "../../components/CustomAlert/CustomAlertSucess";
+import Footer from "../../components/Footer/Footer";
+import Navbar from "../../components/Navbar/Navbar";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -43,6 +45,7 @@ export function Login() {
 
   return (
     <>
+      <Navbar/>
       <div className={styles.container}>
         <form className={styles.form} onSubmit={(e)=> handleLogin(e)}>
           <h1>Login</h1>
@@ -83,6 +86,7 @@ export function Login() {
           </div>
         </form>
       </div>
+      <Footer/>
     </>
   );
 }

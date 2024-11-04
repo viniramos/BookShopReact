@@ -5,6 +5,8 @@ import { FaUser, FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { api } from "../../services/api";
 import CustomAlertSuccess from "../../components/CustomAlert/CustomAlertSucess";
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
 
 export function Cadastro() {
   const [nome, setNome] = useState("");
@@ -53,6 +55,7 @@ export function Cadastro() {
 
   return (
     <>
+      <Navbar/>
       <div className={styles.container}>
         <form className={styles.form} onSubmit={handleCadastro}>
           <h1>Cadastro</h1>
@@ -96,6 +99,7 @@ export function Cadastro() {
           </div>
         </form>
       </div>
+      <Footer/>
     </>
   );
 }
