@@ -1,8 +1,14 @@
-import { useContext, useEffect, useState } from "react";
-import {api} from '../../services/api';
-import { carrinhoContext } from "../../context/CarrinhoContext";
+import Footer from "../../components/Footer/Footer"
+import Navbar from "../../components/Navbar/Navbar"
+import { LojaDeLivros } from "../../context/LojaDeLivro"
 
 export function LivrosPage(){
-
-    const{adicionarItens,itensCarrinho } = useContext(carrinhoContext);
+    return(
+        <>
+            
+            <LojaDeLivros/>
+            
+        </>
+    )
+    
 }

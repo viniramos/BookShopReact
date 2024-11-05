@@ -17,6 +17,7 @@ export function Home() {
             body={
               "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia sint fugit quam quide"
             }
+            price={"R$ 55.80"}
           />
 
           <Card

@@ -5,6 +5,8 @@ import { BsInfoCircleFill } from "react-icons/bs";
 import { MdOutlineLogin } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
+import { IoMdSearch } from "react-icons/io";
+import { LojaDeLivros } from "../../context/LojaDeLivro";
 
 export function Navbar() {
   return (
@@ -38,6 +40,15 @@ export function Navbar() {
                 <BsInfoCircleFill />
                 Sobre
               </Link>
+            </li>
+
+            <li className={styles.item}>
+              <div className={styles.search}>
+                <input type="text" placeholder="Digite o título do livro"/>
+                <button>
+                  <IoMdSearch />
+                </button>
+              </div>
             </li>
           </ul>
         </div>

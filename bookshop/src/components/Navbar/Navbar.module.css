@@ -39,6 +39,30 @@
   text-decoration: none;
 }
 
+.item input {
+  color: #fff;
+  font-size: 1rem;
+  width: 100%;
+  padding: 10px 5px 5px;
+  background-color: #4f4f4f;
+  border: none;
+  border-radius: 4px;
+}
+
+.item .search {
+  display: flex;
+}
+
+.search button {
+  padding: 7px;
+  font-size: 1rem;
+  border-radius: 50%;
+}
+
+.search button:hover{
+  cursor: pointer;
+}
+
 .title a:hover,
 .item a:hover {
   color: cornflowerblue;

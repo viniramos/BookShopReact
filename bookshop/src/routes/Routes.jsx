@@ -5,7 +5,7 @@ import { Login } from "../pages/Login/Login";
 import { Cadastro } from "../pages/Cadastro/Cadastro";
 import { Sobre } from "../pages/Sobre/Sobre";
 import { NotFound } from "../pages/NotFound/NotFound";
-
+import {LivrosPage} from "../pages/Livro/LivrosPage"
 
 export function Rotas() {
   return (
@@ -13,6 +13,7 @@ export function Rotas() {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/carrinho" element={<Carrinho />} />
+        <Route path="/livros" element={<LivrosPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/sobre" element={<Sobre />} />

@@ -1,6 +1,6 @@
 import styles from "./Card.module.css";
 
-export function Card({ title, imageUrl, body }) {
+export function Card({ title, imageUrl, body, price }) {
   return (
     <>
       <div className={styles.container}>
@@ -14,6 +14,9 @@ export function Card({ title, imageUrl, body }) {
               </div>
               <div className={styles.cardBody}>
                 <p>{body}</p>
+              </div>
+              <div className={styles.cardPrice}>
+                <p>{price}</p>
               </div>
             </div>
             <div className={styles.btn}>
