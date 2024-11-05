@@ -3,7 +3,7 @@
 </div>
 
 <p align="center">
-  <img src="Logo BookShop React.PNG" alt="Logo BookShop" width="300">
+  <img src="Logo BookShop React.png" alt="Logo BookShop" width="300">
 </p>
 
 Bem-vindo ao **BookShop**, um e-commerce desenvolvido para a compra e venda de livros digitais, criado como parte do Projeto Final da disciplina de **Desenvolvimento Web** para a **Residência de TIC/Software 2024.2** do Serratec.
