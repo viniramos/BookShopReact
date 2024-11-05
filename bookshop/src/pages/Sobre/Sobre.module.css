@@ -36,7 +36,7 @@
   .container {
     background-color: #222;
     color: #fff;
-    padding: 50px 20px;
+    padding: 50px;
     min-height: 100vh;
     text-align: center;
     padding-bottom: 100px; 
@@ -51,12 +51,12 @@
   .membersGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 15px;
   }
   
   .memberCard {
     background-color: #191c29;
-    padding: 20px;
+    padding: 0 30px 50px;
     border-radius: 6px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -70,6 +70,7 @@
     font-size: 1.5em;
     font-family: cursive;
     color: #fff;
+    max-width: 30rem;
   }
   
   .memberCard:hover {
@@ -87,7 +88,7 @@
   
   .memberName {
     font-family: 'Times New Roman', serif;
-    font-size: 1.5rem;
+    font-size: 1rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid #14078d;
     padding-bottom: 5px;
@@ -99,7 +100,7 @@
   
   .memberDescription {
     font-family: 'Arial', sans-serif;
-    font-size: 1rem;
+    font-size: 0.75rem;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     flex: 1;
     margin-top: auto;

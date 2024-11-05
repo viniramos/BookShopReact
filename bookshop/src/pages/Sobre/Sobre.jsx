@@ -7,7 +7,7 @@ const members = [
   {
     name: 'Caio Pacheco',
     description: 'Estudante Serratec 2024-2',
-    image: ''
+    image: 'https://avatars.githubusercontent.com/u/130093071?v=4'
   },
   {
     name: 'Rafael Guberman',
