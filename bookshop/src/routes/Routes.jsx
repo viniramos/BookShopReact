@@ -5,7 +5,10 @@ import { Login } from "../pages/Login/Login";
 import { Cadastro } from "../pages/Cadastro/Cadastro";
 import { Sobre } from "../pages/Sobre/Sobre";
 import { NotFound } from "../pages/NotFound/NotFound";
-import {LivrosPage} from "../pages/Livro/LivrosPage"
+import LivrosPage from "/src/pages/Livro/LivrosPage.jsx";
+import {Search} from "../pages/Search/Search"
+
+
 
 export function Rotas() {
   return (
@@ -17,6 +20,7 @@ export function Rotas() {
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/sobre" element={<Sobre />} />
+        <Route path="/search" element={<Search />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

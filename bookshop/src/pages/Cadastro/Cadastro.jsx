@@ -1,91 +1,128 @@
 import styles from "./Cadastro.module.css";
-import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { FaUser, FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { api } from "../../services/api";
-import CustomAlertSuccess from "../../components/CustomAlert/CustomAlertSucess";
+import { PiPhoneFill } from "react-icons/pi";
+import { FaAddressCard } from "react-icons/fa";
+import { FaAddressBook } from "react-icons/fa";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 
 export function Cadastro() {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-
-  const setUsuarios = useState([]);
+  const [formData, setFormData] = useState({
+    nome: '',
+    email: '',
+    cpf: '',
+    telefone: '',
+    endereco: '',
+    senha: '',
+    confirmSenha: '',
+  });
 
   const navigate = useNavigate();
   const handleNavigationLogin = () => navigate("/login");
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
 
-  const handleCadastro = async (e) => {
+  const handleCadastro = (e) => {
     e.preventDefault();
-    const cadastro = {
-      nome: nome,
-      email: email,
-      senha: senha,
-    };
 
-    await api.post("/clientes", cadastro);
+    if (formData.senha !== formData.confirmSenha) {
+      alert('As senhas não coincidem');
+      return;
+    }
 
-    CustomAlertSuccess("Usuário cadastrado", "com sucesso!");
-    navigate("/");
-    setEmail("");
-    setSenha("");
-    setNome("");
-    getUsuarios();
-  };
-
-  const getUsuarios = async () => {
-    const response = await api.get("/clientes");
-    setUsuarios(response.data);
-  };
-
-  const handleChangeNome = (e) => {
-    setNome(e.target.value);
-  };
-
-  const handleChangeEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleChangeSenha = (e) => {
-    setSenha(e.target.value);
+    // Salva os dados no local
+    localStorage.setItem("userData", JSON.stringify(formData));
+    alert("Cadastro realizado com sucesso!");
+    
+    navigate("/login");
   };
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <div className={styles.container}>
         <form className={styles.form} onSubmit={handleCadastro}>
           <h1>Cadastro</h1>
           <div className={styles.inputfield}>
             <input
               type="text"
+              name="nome"
               placeholder="Nome de usuário"
-              value={nome}
+              value={formData.nome}
+              onChange={handleChange}
               required
-              onChange={handleChangeNome}
             />
             <FaUser className={styles.icon} />
           </div>
           <div className={styles.inputfield}>
             <input
-              type="email"
-              placeholder="Endereço de e-mail"
-              value={email}
+              type="text"
+              name="cpf"
+              placeholder="CPF"
+              value={formData.cpf}
+              onChange={handleChange}
               required
-              onChange={handleChangeEmail}
+            />
+            <FaAddressCard className={styles.icon} />
+          </div>
+          <div className={styles.inputfield}>
+            <input
+              type="email"
+              name="email"
+              placeholder="Endereço de e-mail"
+              value={formData.email}
+              onChange={handleChange}
+              required
             />
             <MdEmail className={styles.icon} />
           </div>
           <div className={styles.inputfield}>
             <input
-              type="password"
-              placeholder="Senha"
-              value={senha}
+              type="tel"
+              name="telefone"
+              placeholder="Telefone"
+              value={formData.telefone}
+              onChange={handleChange}
               required
-              onChange={handleChangeSenha}
+            />
+            <PiPhoneFill className={styles.icon}/>
+          </div>
+          <div className={styles.inputfield}>
+            <input
+              type="text"
+              name="endereco"
+              placeholder="Endereço"
+              value={formData.endereco}
+              onChange={handleChange}
+              required
+            />
+            <FaAddressBook className={styles.icon}/>  
+          </div>
+          <div className={styles.inputfield}>
+            <input
+              type="password"
+              name="senha"
+              placeholder="Senha"
+              value={formData.senha}
+              onChange={handleChange}
+              required
+            />
+            <FaLock className={styles.icon} />
+          </div>
+          <div className={styles.inputfield}>
+            <input
+              type="password"
+              name="confirmSenha"
+              placeholder="Confirme a Senha"
+              value={formData.confirmSenha}
+              onChange={handleChange}
+              required
             />
             <FaLock className={styles.icon} />
           </div>
@@ -94,12 +131,12 @@ export function Cadastro() {
           <div className={styles.btncadastro}>
             <p>
               Já possui uma conta?
-              <button onClick={handleNavigationLogin}>Fazer login</button>
+              <button type="button" onClick={handleNavigationLogin}>Fazer login</button>
             </p>
           </div>
         </form>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

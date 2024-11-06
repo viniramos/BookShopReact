@@ -1,23 +1,35 @@
-import { useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import axios from "axios";
+import styles from "./LojaDeLivro.module.css";
 
 export function LojaDeLivros() {
+  const [searchParams] = useSearchParams();
   const [livros, setLivros] = useState([]);
   const [carrinho, setCarrinho] = useState([]);
-  const [termoBusca, setTermoBusca] = useState('');
+  const query = searchParams.get("q");
 
-  // Função para buscar livros usando a Open Library API
-  const buscarLivros = async () => {
+  // Tras os livros do carrinho
+  useEffect(() => {
+    const carrinhoSalvo = JSON.parse(localStorage.getItem("carrinho"));
+    if (carrinhoSalvo) {
+      setCarrinho(carrinhoSalvo);
+    }
+  }, []);
+
+  const buscarLivros = async (query) => {
     try {
-      const resposta = await axios.get(`https://openlibrary.org/search.json?title=${termoBusca}`);
-      const livrosComPrecos = resposta.data.docs.map(livro => ({
+      const resposta = await axios.get(
+        `https://openlibrary.org/search.json?title=${query}`
+      );
+      const livrosComPrecos = resposta.data.docs.map((livro) => ({
         id: livro.key,
-        capa: livro.cover_i 
-          ? `https://covers.openlibrary.org/b/id/${livro.cover_i}-M.jpg` 
-          : null,  // URL da capa ou null se não houver capa
+        capa: livro.cover_i
+          ? `https://covers.openlibrary.org/b/id/${livro.cover_i}-M.jpg`
+          : null,
         title: livro.title,
         author: livro.author_name?.[0] || "Autor desconhecido",
-        preco: (Math.random() * 50 + 10).toFixed(2)  // Preço simulado entre $10 e $60
+        preco: (Math.random() * 50 + 100).toFixed(2),
       }));
       setLivros(livrosComPrecos);
     } catch (error) {
@@ -25,72 +37,50 @@ export function LojaDeLivros() {
     }
   };
 
-  // Função para adicionar ao carrinho
   const adicionarAoCarrinho = (livro) => {
-    setCarrinho([...carrinho, livro]);
+    const carrinhoAtualizado = [...carrinho, livro];
+    setCarrinho(carrinhoAtualizado);
+    localStorage.setItem("carrinho", JSON.stringify(carrinhoAtualizado));
   };
 
-  // Função para remover do carrinho
-  const removerDoCarrinho = (id) => {
-    setCarrinho(carrinho.filter(item => item.id !== id));
-  };
-
-  // Calcular o total do carrinho
-  const totalCarrinho = carrinho.reduce((total, item) => total + parseFloat(item.preco), 0).toFixed(2);
+  useEffect(() => {
+    if (query) {
+      buscarLivros(query);
+    }
+  }, [query]);
 
   return (
-    <div className='container'>
-      <h1>Loja de Livros</h1>
-
-      {/* Campo de busca */}
-      <input
-        type="text"
-        placeholder="Digite o título do livro"
-        value={termoBusca}
-        onChange={(e) => setTermoBusca(e.target.value)}
-      />
-      <button onClick={buscarLivros}>Buscar</button>
-
-      <h2>Livros Disponíveis</h2>
-      <div>
+    <div className={styles.container}>
+      <h2 className={styles.title}>
+        Resultados para: <span className={styles.queryText}>{query}</span>
+      </h2>
+      <div className={styles.cardContainer}>
         {livros.length === 0 ? (
           <p>Nenhum livro encontrado.</p>
         ) : (
-          livros.map(livro => (
-            <div key={livro.id} style={{ border: '1px solid gray', padding: '10px', margin: '10px' }}>
+          livros.map((livro) => (
+            <div key={livro.id}>
               {livro.capa && (
-                <img src={livro.capa} alt={`Capa de ${livro.title}`} style={{ width: '100px', height: '150px' }} />
+                <img
+                  className={styles.imgCard}
+                  src={livro.capa}
+                  alt={`Capa de ${livro.title}`}
+                />
               )}
               <h3>{livro.title}</h3>
               <p>Autor: {livro.author}</p>
               <p>Preço: R$ {livro.preco}</p>
-              <button onClick={() => adicionarAoCarrinho(livro)}>Adicionar ao Carrinho</button>
+              <div className={styles.btn}>
+                <button onClick={() => adicionarAoCarrinho(livro)}>
+                  Adicionar ao Carrinho
+                </button>
+              </div>
             </div>
           ))
-        )}
-      </div>
-
-      <h2>Carrinho({carrinho.length})</h2>
-      <div>
-        {carrinho.length === 0 ? (
-          <p>O carrinho está vazio.</p>
-        ) : (
-          <>
-            {carrinho.map(item => (
-              <div key={item.id} style={{ border: '1px solid gray', padding: '10px', margin: '10px' }}>
-                <h3>{item.title}</h3>
-                <p>Autor: {item.author}</p>
-                <p>Preço: R$ {item.preco}</p>
-                {item.capa && (
-                  <img src={item.capa} alt={`Capa de ${item.title}`} style={{ width: '100px', height: '150px' }} />
-                )}
-                <button onClick={() => removerDoCarrinho(item.id)}>Remover</button>
-              </div>
-            ))}
-            <h3>Total: R$ {totalCarrinho}</h3>
-          </>
         )}
       </div>
     </div>
   );
 }
+
+export default LojaDeLivros;

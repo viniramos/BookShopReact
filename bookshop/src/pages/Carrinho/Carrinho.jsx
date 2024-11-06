@@ -1,40 +1,71 @@
+import { useEffect, useState } from "react";
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
+import styles from "./Carrinho.module.css";
 
 export function Carrinho() {
+  const [carrinho, setCarrinho] = useState([]);
+
+  useEffect(() => {
+    const carrinhoSalvo = JSON.parse(localStorage.getItem("carrinho"));
+    if (carrinhoSalvo) {
+      setCarrinho(carrinhoSalvo);
+    }
+  }, []);
+
+  const removerDoCarrinho = (id) => {
+    const novoCarrinho = carrinho.filter((item) => item.id !== id);
+    setCarrinho(novoCarrinho);
+    localStorage.setItem("carrinho", JSON.stringify(novoCarrinho));
+  };
+
+  const totalCarrinho = carrinho
+    .reduce((total, item) => total + parseFloat(item.preco), 0)
+    .toFixed(2);
+
   return (
     <>
       <Navbar />
-      <h1>Carrinho</h1>
+      <div className={styles.container}>
+        <div className={styles.carrinhoContainer}>
+          <h1 className={styles.title}>Carrinho</h1>
+          {carrinho.length === 0 ? (
+            <p>O carrinho está vazio.</p>
+          ) : (
+            <>
+              <div className={styles.cardContainer}>
+                {carrinho.map((item) => (
+                  <div key={item.id} className={styles.carrinhoItem}>
+                    {item.capa && (
+                      <img
+                        src={item.capa}
+                        alt={`Capa de ${item.title}`}
+                        className={styles.imgCard}
+                      />
+                    )}
+                    <h3>{item.title}</h3>
+                    <p>Autor: {item.author}</p>
+                    <p>Preço: R$ {item.preco}</p>
+                    <div className={styles.btn}>
+                      <button onClick={() => removerDoCarrinho(item.id)}>
+                        Remover
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className={styles.carrinhoTotal}>
+                <h3>Total: R$ {totalCarrinho}</h3>
+                <p>Produtos no carrinho: {carrinho.length}</p>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+
       <Footer />
     </>
   );
- 
-  'react'; function Cart() 
-  { return (
-    <>
-    <Navbar />
-    <div className="cart-container"> 
-      <h2>Meu Carrinho</h2> 
-      <div className="cart-item"> 
-          <div className="item-details"> 
-          <img src="link da imagem" alt="Capa do Livro" /> 
-            <div className="item-info"> <h4>Título do Livro</h4>
-            <p>Autor: Nome do Autor</p>
-            <p>Quantidade: 1</p>
-          </div> 
-      </div> 
-        <div className="item-price"> 
-          <p>R$ 49,90</p>
-      </div>
-    </div>
-    <div className="cart-summary">
-      <h3>Total: R$ 49,90</h3>
-        <button className="checkout-button">Finalizar Compra</button>
-         </div> 
-        </div>
-         <Footer />
-         </>
-        );
-  }
 }
+
+export default Carrinho;

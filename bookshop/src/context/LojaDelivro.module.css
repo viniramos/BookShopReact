@@ -1,0 +1,65 @@
+.container {
+  padding-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.imgCard {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.cardContainer > div {
+  background-color: #f4f4f4;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardContainer h3 {
+  font-size: 18px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.cardContainer p {
+  font-size: 14px;
+  color: #555;
+}
+
+.btn button {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn button:hover {
+  background-color: #45a049;
+}

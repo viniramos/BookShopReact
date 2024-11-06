@@ -1,61 +1,50 @@
 import styles from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FaUser, FaLock } from "react-icons/fa";
-import CustomAlertError from "../../components/CustomAlert/CustomAlertError";
-import CustomAlertSuccess from "../../components/CustomAlert/CustomAlertSucess";
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
 
 export function Login() {
-  const [email, setEmail] = useState("");
+  const [nome, setNome] = useState("");
   const [senha, setSenha] = useState("");
-  const [usuariologado, setUsuarioLogado] = useState("")
-
-  const setUsuarios = useState([]);
-
   const navigate = useNavigate();
+
   const handleNavigationCadastro = () => navigate("/cadastro");
 
-  useEffect(()=>{
-    getUsuarios()
-  },[])
+  const handleLogin = (e) => {
+    e.preventDefault();
 
-  const getUsuarios = async () => {
-    const response = await api.get("/clientes")
-    setUsuarios(response.data)
-  }
+    const espacoNome = nome.trim();
+    const espacoSenha = senha.trim();
 
-  const handleLogin = async (e) => {
-    e.preventDefault()
-    getUsuarios()
-    const response = await api.get("/clientes", {
-      params: {email: email, senha: senha}
-    })
+    const storedUserData = JSON.parse(localStorage.getItem("userData"));
 
-    setUsuarioLogado(response.data[0])
+    if (storedUserData && storedUserData.nome === espacoNome && storedUserData.senha === espacoSenha) {
+      console.log("Login realizado com sucesso");
 
-    if(response.data[0]==undefined){
-      CustomAlertError('Usuário ou senha', 'inválidos!')
+      // guarda o nome localStorage
+      localStorage.setItem("loggedUser", JSON.stringify({ nome: espacoNome }));
+
+      navigate("/");
     } else {
-      CustomAlertSuccess('Usuário logado', 'com sucesso!')
-      navigate("/")
+      alert("Nome de usuário ou senha incorretos");
     }
-  }
+  };
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <div className={styles.container}>
-        <form className={styles.form} onSubmit={(e)=> handleLogin(e)}>
+        <form className={styles.form} onSubmit={handleLogin}>
           <h1>Login</h1>
           <div className={styles.inputfield}>
             <input
-              type="email"
-              value={email}
-              placeholder="E-mail"
+              type="text"
+              value={nome}
+              placeholder="Nome"
+              onChange={(e) => setNome(e.target.value)}
               required
-              onChange={(e) => setEmail(e.target.value)}
             />
             <FaUser className={styles.icon} />
           </div>
@@ -64,8 +53,8 @@ export function Login() {
               type="password"
               value={senha}
               placeholder="Senha"
-              required
               onChange={(e) => setSenha(e.target.value)}
+              required
             />
             <FaLock className={styles.icon} />
           </div>
@@ -76,17 +65,19 @@ export function Login() {
               Lembrar de mim
             </label>
           </div>
-          <button>Entrar</button>
+          <button type="submit">Entrar</button>
 
           <div className={styles.btncadastro}>
             <p>
               Não tem uma conta?
-              <button onClick={handleNavigationCadastro}>Registrar</button>
+              <button type="button" onClick={handleNavigationCadastro}>Registrar</button>
             </p>
           </div>
         </form>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
+
+export default Login;

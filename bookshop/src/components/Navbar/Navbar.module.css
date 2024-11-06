@@ -17,6 +17,7 @@
   z-index: 1000;
   font-size: 1.25rem;
   width: 100%;
+  margin-bottom: 1000px;
 }
 
 .list {
@@ -49,12 +50,16 @@
   border-radius: 4px;
 }
 
+.search form{
+  display: flex;
+}
+
 .item .search {
   display: flex;
 }
 
 .search button {
-  padding: 7px;
+  padding: 6px;
   font-size: 1rem;
   border-radius: 50%;
 }
@@ -66,4 +71,8 @@
 .title a:hover,
 .item a:hover {
   color: cornflowerblue;
+}
+
+.user {
+  color: #fff;
 }
